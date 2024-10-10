@@ -72,4 +72,17 @@ public abstract record RouteResult
             Console.WriteLine($"Failure: Speed limit reached");
         }
     }
+
+    public sealed record ZeroRouteSections : RouteResult
+    {
+        public override bool Result()
+        {
+            return false;
+        }
+
+        public override void PrintResult()
+        {
+            Console.WriteLine("Failure: No route sections");
+        }
+    }
 }
