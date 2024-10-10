@@ -5,32 +5,32 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Routes;
 
 public class WholeRoute
 {
-    public double SpeedLimit { get; }
+    private double SpeedLimit { get; }
 
-    public Train MyTrain { get; }
+    private readonly Train _train;
 
     public WholeRoute(double speedLimit, Train train)
     {
         SpeedLimit = speedLimit;
-        MyTrain = train;
+        _train = train;
     }
 
-    private readonly List<IRouteSection> routeSections = new List<IRouteSection>();
+    private readonly List<IRouteSection> _routeSections = new List<IRouteSection>();
 
-    public void AddRouteSection(IRouteSection routeSection) => routeSections.Add(routeSection);
+    public void AddRouteSection(IRouteSection routeSection) => _routeSections.Add(routeSection);
 
     public RouteResult DriveTheRoute()
     {
-        if (routeSections.Count == 0)
+        if (_routeSections.Count == 0)
         {
-            throw new Exception("No route sections");
+            return new RouteResult.ZeroRouteSections();
         }
 
         double resultTime = 0;
 
-        foreach (IRouteSection section in routeSections)
+        foreach (IRouteSection section in _routeSections)
         {
-            RouteResult result = section.MoveTrain(MyTrain);
+            RouteResult result = section.MoveTrain(_train);
             if (result is RouteResult.Success successResult)
             {
                 resultTime += successResult.Time;
@@ -41,7 +41,7 @@ public class WholeRoute
             }
         }
 
-        if (MyTrain.Speed > SpeedLimit)
+        if (_train.Speed > SpeedLimit)
         {
             return new RouteResult.SpeedLimitReached();
         }
