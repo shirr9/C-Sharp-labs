@@ -44,7 +44,7 @@ public class Train
         return true;
     }
 
-    public RouteResult TotalTime(double allDistance)
+    public RouteResult CalculateTotalTime(double allDistance)
     {
         double totalTime = 0;
         while (allDistance > 0)

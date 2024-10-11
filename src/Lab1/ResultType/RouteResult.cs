@@ -2,87 +2,35 @@
 
 public abstract record RouteResult
 {
-    private RouteResult() { }
-
-    public abstract bool Result();
-
-    public abstract void PrintResult();
+    public abstract string Result { get; init; }
 
     public sealed record Success(double Time) : RouteResult
     {
-        public override bool Result()
-        {
-            return true;
-        }
-
-        public override void PrintResult()
-        {
-            Console.WriteLine($"Success: Route completed successfully at time: {Time}");
-        }
+        public override string Result { get; init; } = $"Success: Route completed successfully at time: {Time}";
     }
 
     public sealed record ForceLimitReached : RouteResult
     {
-        public override bool Result()
-        {
-            return false;
-        }
-
-        public override void PrintResult()
-        {
-            Console.WriteLine("Failure: Force limit reached");
-        }
+        public override string Result { get; init; } = "Failure: Force limit reached";
     }
 
     public sealed record NegativeSpeed : RouteResult
     {
-        public override bool Result()
-        {
-            return false;
-        }
-
-        public override void PrintResult()
-        {
-            Console.WriteLine("Failure: Speed became negative");
-        }
+        public override string Result { get; init; } = "Failure: Speed became negative";
     }
 
     public sealed record ZeroAccelerationAndSpeed : RouteResult
     {
-        public override bool Result()
-        {
-            return false;
-        }
-
-        public override void PrintResult()
-        {
-            Console.WriteLine("Failure: Acceleration and speed are zero");
-        }
+        public override string Result { get; init; } = "Failure: Acceleration and speed are zero";
     }
 
     public sealed record SpeedLimitReached : RouteResult
     {
-        public override bool Result()
-        {
-            return false;
-        }
-
-        public override void PrintResult()
-        {
-            Console.WriteLine($"Failure: Speed limit reached");
-        }
+        public override string Result { get; init; } = "Failure: Speed limit reached";
     }
 
     public sealed record ZeroRouteSections : RouteResult
     {
-        public override bool Result()
-        {
-            return false;
-        }
-
-        public override void PrintResult()
-        {
-            Console.WriteLine("Failure: No route sections");
-        }
+        public override string Result { get; init; } = "Failure: No route sections";
     }
 }

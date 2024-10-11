@@ -19,6 +19,6 @@ public class DefaultRoute : IRouteSection
 
     public RouteResult MoveTrain(Train train)
     {
-        return train.TotalTime(Distance);
+        return train.CalculateTotalTime(Distance);
     }
 }

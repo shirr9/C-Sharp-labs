@@ -27,6 +27,6 @@ public class ForceRoute : IRouteSection
             return new RouteResult.ForceLimitReached();
         }
 
-        return train.TotalTime(Distance);
+        return train.CalculateTotalTime(Distance);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab1.Routes;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.ResultType;
+using Itmo.ObjectOrientedProgramming.Lab1.Routes;
 using Itmo.ObjectOrientedProgramming.Lab1.Trains;
 using Xunit;
 
@@ -17,10 +18,9 @@ public class MyTests
         road.AddRouteSection(forceRoute);
         road.AddRouteSection(defaultRoute);
 
-        bool result = road.DriveTheRoute().Result();
-        bool expectedResult = true;
+        bool result = road.DriveTheRoute() is RouteResult.Success;
 
-        Assert.Equal(expectedResult, result);
+        Assert.True(result);
     }
 
     [Fact]
@@ -34,10 +34,9 @@ public class MyTests
         road.AddRouteSection(forceRoute);
         road.AddRouteSection(defaultRoute);
 
-        bool result = road.DriveTheRoute().Result();
-        bool expectedResult = false;
+        bool result = road.DriveTheRoute() is RouteResult.Success;
 
-        Assert.Equal(expectedResult, result);
+        Assert.False(result);
     }
 
     [Fact]
@@ -55,10 +54,9 @@ public class MyTests
         road.AddRouteSection(station);
         road.AddRouteSection(defaultRoute2);
 
-        bool result = road.DriveTheRoute().Result();
-        bool expectedResult = true;
+        bool result = road.DriveTheRoute() is RouteResult.Success;
 
-        Assert.Equal(expectedResult, result);
+        Assert.True(result);
     }
 
     [Fact]
@@ -72,10 +70,9 @@ public class MyTests
         road.AddRouteSection(forceRoute);
         road.AddRouteSection(station);
 
-        bool result = road.DriveTheRoute().Result();
-        bool expectedResult = false;
+        bool result = road.DriveTheRoute() is RouteResult.Success;
 
-        Assert.Equal(expectedResult, result);
+        Assert.False(result);
     }
 
     [Fact]
@@ -93,10 +90,9 @@ public class MyTests
         road.AddRouteSection(station);
         road.AddRouteSection(defaultRoute2);
 
-        bool result = road.DriveTheRoute().Result();
-        bool expectedResult = false;
+        bool result = road.DriveTheRoute() is RouteResult.Success;
 
-        Assert.Equal(expectedResult, result);
+        Assert.False(result);
     }
 
     [Fact]
@@ -122,10 +118,9 @@ public class MyTests
         road.AddRouteSection(defaultRoute3);
         road.AddRouteSection(forceRoute4);
 
-        bool result = road.DriveTheRoute().Result();
-        bool expectedResult = true;
+        bool result = road.DriveTheRoute() is RouteResult.Success;
 
-        Assert.Equal(expectedResult, result);
+        Assert.True(result);
     }
 
     [Fact]
@@ -137,10 +132,9 @@ public class MyTests
         var road = new WholeRoute(100, train);
         road.AddRouteSection(defaultRoute);
 
-        bool result = road.DriveTheRoute().Result();
-        bool expectedResult = false;
+        bool result = road.DriveTheRoute() is RouteResult.Success;
 
-        Assert.Equal(expectedResult, result);
+        Assert.False(result);
     }
 
     [Fact]
@@ -154,9 +148,8 @@ public class MyTests
         road.AddRouteSection(forceRoute1);
         road.AddRouteSection(forceRoute2);
 
-        bool result = road.DriveTheRoute().Result();
-        bool expectedResult = false;
+        bool result = road.DriveTheRoute() is RouteResult.Success;
 
-        Assert.Equal(expectedResult, result);
+        Assert.False(result);
     }
 }
