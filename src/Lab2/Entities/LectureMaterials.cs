@@ -1,5 +1,4 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
-using Itmo.ObjectOrientedProgramming.Lab2.ResultType;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
@@ -37,17 +36,17 @@ public class LectureMaterials : ILectureMaterials
         Content = sourceLectureMaterials.Content;
     }
 
-    public ResultOfChange TryModify(User user, string name, string description, string content)
+    public bool TryModify(User user, string name, string description, string content)
     {
         if (user.Id != Author.Id || user.Name != Author.Name)
         {
-            return new ResultOfChange.IncorrectAuthor();
+            return false;
         }
 
         Name = name;
         Description = description;
         Content = content;
-        return new ResultOfChange.Success();
+        return true;
     }
 
     public ILectureMaterials Clone()

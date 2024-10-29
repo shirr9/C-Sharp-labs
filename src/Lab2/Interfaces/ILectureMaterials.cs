@@ -1,5 +1,4 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.ResultType;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
 
@@ -15,7 +14,7 @@ public interface ILectureMaterials : IEntity
 
     public string Content { get; }
 
-    public ResultOfChange TryModify(User user, string name, string description, string content);
+    public bool TryModify(User user, string name, string description, string content);
 
     public ILectureMaterials Clone();
 }

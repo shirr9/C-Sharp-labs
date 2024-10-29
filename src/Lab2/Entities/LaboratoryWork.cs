@@ -1,5 +1,4 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
-using Itmo.ObjectOrientedProgramming.Lab2.ResultType;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
@@ -41,16 +40,16 @@ public class LaboratoryWork : ILaboratoryWork
         EvaluationCriteria = sourceLaboratoryWork.EvaluationCriteria;
     }
 
-    public ResultOfChange TryModify(User user, string name, string description)
+    public bool TryModify(User user, string name, string description)
     {
         if (user.Id != Author.Id || user.Name != Author.Name)
         {
-            return new ResultOfChange.IncorrectAuthor();
+            return false;
         }
 
         Name = name;
         Description = description;
-        return new ResultOfChange.Success();
+        return true;
     }
 
     public ILaboratoryWork Clone()
