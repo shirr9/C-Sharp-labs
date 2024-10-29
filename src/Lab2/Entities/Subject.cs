@@ -2,7 +2,6 @@
 using Itmo.ObjectOrientedProgramming.Lab2.Enums;
 using Itmo.ObjectOrientedProgramming.Lab2.Exceptions;
 using Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
-using Itmo.ObjectOrientedProgramming.Lab2.ResultType;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
@@ -16,15 +15,8 @@ public class Subject : ISubject
         Author = author;
         Type = type;
         PointsCount = pointsCount;
-        foreach (ILaboratoryWork laboratory in laboratoryWorks)
-        {
-            _laboratoryWorks.Add(laboratory);
-        }
-
-        foreach (ILectureMaterials lectureMaterial in lectureMaterials)
-        {
-            _lectureMaterials.Add(lectureMaterial);
-        }
+        _laboratoryWorks.AddRange(laboratoryWorks);
+        _lectureMaterials.AddRange(lectureMaterials);
     }
 
     private Subject(Subject sourceSubject)
@@ -66,15 +58,15 @@ public class Subject : ISubject
         _lectureMaterials.Add(lectureMaterials);
     }
 
-    public ResultOfChange TryModify(User user, string name)
+    public bool TryModify(User user, string name)
     {
         if (user.Id != Author.Id || user.Name != Author.Name)
         {
-            return new ResultOfChange.IncorrectAuthor();
+            return false;
         }
 
         Name = name;
-        return new ResultOfChange.Success();
+        return true;
     }
 
     public ISubject Clone()
@@ -104,7 +96,7 @@ public class Subject : ISubject
 
         private readonly List<ILectureMaterials> _lectureMaterialsCollection = [];
 
-        private string? _name;
+        private string _name = string.Empty;
 
         private User? _author;
 
@@ -156,8 +148,6 @@ public class Subject : ISubject
         public Subject Build()
         {
             User? authorToUse = _author ?? _defaultAuthor;
-
-            if (_name == null) throw new MissingRequiredFieldException("Name");
             if (authorToUse == null) throw new MissingRequiredFieldException("Author");
 
             var subject = new Subject(_name, authorToUse, _type, _pointsCount, _laboratoryWorksCollection, _lectureMaterialsCollection);

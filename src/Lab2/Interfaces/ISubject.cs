@@ -1,6 +1,5 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Enums;
-using Itmo.ObjectOrientedProgramming.Lab2.ResultType;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
 
@@ -18,7 +17,7 @@ public interface ISubject : IEntity
 
     void AddLectureMaterial(ILectureMaterials lectureMaterials);
 
-    public ResultOfChange TryModify(User user, string name);
+    public bool TryModify(User user, string name);
 
     public ISubject Clone();
 
