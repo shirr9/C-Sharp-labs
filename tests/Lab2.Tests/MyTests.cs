@@ -2,7 +2,6 @@
 using Itmo.ObjectOrientedProgramming.Lab2.Enums;
 using Itmo.ObjectOrientedProgramming.Lab2.Exceptions;
 using Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
-using Itmo.ObjectOrientedProgramming.Lab2.ResultType;
 using Xunit;
 
 namespace Lab2.Tests;
@@ -21,8 +20,7 @@ public class MyTests
             .WithPointsCount(20)
             .WithLaboratoryWork(new LaboratoryWork("lab1", author, "description", 80, "Criteria"))
             .Build();
-        bool result = subject.TryModify(author, "Physics") is ResultOfChange.Success;
-        Assert.True(result);
+        Assert.True(subject.TryModify(author, "Physics"));
     }
 
     [Fact]
@@ -38,8 +36,7 @@ public class MyTests
             .WithPointsCount(20)
             .WithLaboratoryWork(new LaboratoryWork("lab1", author1, "description", 80, "Criteria"))
             .Build();
-        bool result = subject.TryModify(author2, "Physics") is ResultOfChange.IncorrectAuthor;
-        Assert.True(result);
+        Assert.False(subject.TryModify(author2, "Physics"));
     }
 
     [Fact]
@@ -47,8 +44,7 @@ public class MyTests
     {
         var author = new User("Zhenya");
         var laboratoryWork = new LaboratoryWork("lab1", author, "description", 80, "Criteria");
-        bool result = laboratoryWork.TryModify(author, "lab", "new description") is ResultOfChange.Success;
-        Assert.True(result);
+        Assert.True(laboratoryWork.TryModify(author, "lab", "new description"));
     }
 
     [Fact]
@@ -57,8 +53,7 @@ public class MyTests
         var author1 = new User("Zhenya");
         var author2 = new User("Sima");
         var laboratoryWork = new LaboratoryWork("lab1", author1, "description", 80, "Criteria");
-        bool result = laboratoryWork.TryModify(author2, "lab", "new description") is ResultOfChange.IncorrectAuthor;
-        Assert.True(result);
+        Assert.False(laboratoryWork.TryModify(author2, "lab", "new description"));
     }
 
     [Fact]
@@ -66,8 +61,7 @@ public class MyTests
     {
         var author = new User("Zhenya");
         var lectureMaterials = new LectureMaterials("lecture1", author, "description",  "Content");
-        bool result = lectureMaterials.TryModify(author, "lab", "new description", "new content") is ResultOfChange.Success;
-        Assert.True(result);
+        Assert.True(lectureMaterials.TryModify(author, "lab", "new description", "new content"));
     }
 
     [Fact]
@@ -76,8 +70,7 @@ public class MyTests
         var author1 = new User("Zhenya");
         var author2 = new User("Sima");
         var lectureMaterials = new LectureMaterials("lecture1", author1, "description",  "Content");
-        bool result = lectureMaterials.TryModify(author2, "lab", "new description", "new content") is ResultOfChange.IncorrectAuthor;
-        Assert.True(result);
+        Assert.False(lectureMaterials.TryModify(author2, "lab", "new description", "new content"));
     }
 
     [Fact]
@@ -128,7 +121,7 @@ public class MyTests
                 .WithAuthor(author)
                 .WithType(AssessmentType.Exam)
                 .WithPointsCount(20)
-                .WithLaboratoryWork(new LaboratoryWork("lab1", author, "description", 20, "Criteria"))
+                .WithLaboratoryWork(new LaboratoryWork("lab1", author, "description", 30, "Criteria"))
                 .Build();
         });
     }
