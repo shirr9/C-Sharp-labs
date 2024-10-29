@@ -1,4 +1,5 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.ResultType;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Repositories;
 
@@ -16,13 +17,13 @@ public class Repository<T> : IRepository<T> where T : IEntity
         _entities.Add(entity.Id, entity);
     }
 
-    public T FindById(Guid id)
+    public SearchResult GetById(Guid id)
     {
         if (_entities.TryGetValue(id, out T? entity))
         {
-            return entity;
+            return new SearchResult.Success(entity);
         }
 
-        throw new KeyNotFoundException("Entity with the specified ID not found.");
+        return new SearchResult.EntityAbsent();
     }
 }
