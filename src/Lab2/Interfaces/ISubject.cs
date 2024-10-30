@@ -5,21 +5,21 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
 
 public interface ISubject : IEntity
 {
-    public Guid? ParentId { get; }
+    Guid? ParentId { get; }
 
-    public string Name { get; protected set; }
+    string Name { get; protected set; }
 
-    public User Author { get; }
+    User Author { get; }
 
-    public AssessmentType Type { get; }
+    AssessmentType Type { get; }
 
-    public int PointsCount { get; }
+    int PointsCount { get; }
 
     void AddLectureMaterial(ILectureMaterials lectureMaterials);
 
-    public bool TryModify(User user, string name);
+    bool TryModify(User user, string name);
 
-    public ISubject Clone();
+    ISubject Clone();
 
-    public bool IsSubjectScoreComplete();
+    bool IsSubjectScoreComplete();
 }
