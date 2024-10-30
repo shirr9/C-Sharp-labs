@@ -36,7 +36,8 @@ public class MyTests
             .WithPointsCount(20)
             .WithLaboratoryWork(new LaboratoryWork("lab1", author1, "description", 80, "Criteria"))
             .Build();
-        Assert.False(subject.TryModify(author2, "Physics"));
+        Assert.False(
+            subject.TryModify(author2, "Physics"));
     }
 
     [Fact]
@@ -44,7 +45,8 @@ public class MyTests
     {
         var author = new User("Zhenya");
         var laboratoryWork = new LaboratoryWork("lab1", author, "description", 80, "Criteria");
-        Assert.True(laboratoryWork.TryModify(author, "lab", "new description"));
+        Assert.True(laboratoryWork.TryModifyName(author, "lab"));
+        Assert.True(laboratoryWork.TryModifyDescription(author, "description"));
     }
 
     [Fact]
@@ -53,7 +55,8 @@ public class MyTests
         var author1 = new User("Zhenya");
         var author2 = new User("Sima");
         var laboratoryWork = new LaboratoryWork("lab1", author1, "description", 80, "Criteria");
-        Assert.False(laboratoryWork.TryModify(author2, "lab", "new description"));
+        Assert.False(laboratoryWork.TryModifyName(author2, "lab"));
+        Assert.False(laboratoryWork.TryModifyDescription(author2, "new description"));
     }
 
     [Fact]
@@ -61,7 +64,9 @@ public class MyTests
     {
         var author = new User("Zhenya");
         var lectureMaterials = new LectureMaterials("lecture1", author, "description",  "Content");
-        Assert.True(lectureMaterials.TryModify(author, "lab", "new description", "new content"));
+        Assert.True(lectureMaterials.TryModifyName(author, "lab"));
+        Assert.True(lectureMaterials.TryModifyDescription(author,  "new description"));
+        Assert.True(lectureMaterials.TryModifyContent(author, "new content"));
     }
 
     [Fact]
@@ -70,7 +75,9 @@ public class MyTests
         var author1 = new User("Zhenya");
         var author2 = new User("Sima");
         var lectureMaterials = new LectureMaterials("lecture1", author1, "description",  "Content");
-        Assert.False(lectureMaterials.TryModify(author2, "lab", "new description", "new content"));
+        Assert.False(lectureMaterials.TryModifyName(author2, "lab"));
+        Assert.False(lectureMaterials.TryModifyDescription(author2, "new description"));
+        Assert.False(lectureMaterials.TryModifyContent(author2, "new content"));
     }
 
     [Fact]
