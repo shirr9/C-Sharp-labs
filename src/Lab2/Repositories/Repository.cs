@@ -1,9 +1,8 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
-using Itmo.ObjectOrientedProgramming.Lab2.ResultType;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Repositories;
 
-public class Repository<T> : IRepository<T> where T : IEntity
+public class Repository<T> : IRepository<T> where T : class, IEntity
 {
     private readonly Dictionary<Guid, T> _entities = new Dictionary<Guid, T>();
 
@@ -17,13 +16,13 @@ public class Repository<T> : IRepository<T> where T : IEntity
         _entities.Add(entity.Id, entity);
     }
 
-    public SearchResult GetById(Guid id)
+    public T? FindById(Guid id)
     {
         if (_entities.TryGetValue(id, out T? entity))
         {
-            return new SearchResult.Success(entity);
+            return entity;
         }
 
-        return new SearchResult.EntityAbsent();
+        return null;
     }
 }
