@@ -4,19 +4,21 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Interfaces;
 
 public interface ILaboratoryWork : IEntity
 {
-    public Guid? ParentId { get; }
+    Guid? ParentId { get; }
 
-    public string Name { get; }
+    string Name { get; }
 
-    public User Author { get; }
+    User Author { get; }
 
-    public string Description { get; }
+    string Description { get; }
 
-    public int PointsCount { get; }
+    int PointsCount { get; }
 
-    public string EvaluationCriteria { get; }
+    string EvaluationCriteria { get; }
 
-    public bool TryModify(User user, string name, string description);
+    bool TryModifyName(User user, string name);
 
-    public ILaboratoryWork Clone();
+    bool TryModifyDescription(User user, string description);
+
+    ILaboratoryWork Clone();
 }

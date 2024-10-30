@@ -40,7 +40,7 @@ public class LaboratoryWork : ILaboratoryWork
         EvaluationCriteria = sourceLaboratoryWork.EvaluationCriteria;
     }
 
-    public bool TryModify(User user, string name, string description)
+    public bool TryModifyName(User user, string name)
     {
         if (user.Id != Author.Id || user.Name != Author.Name)
         {
@@ -48,6 +48,16 @@ public class LaboratoryWork : ILaboratoryWork
         }
 
         Name = name;
+        return true;
+    }
+
+    public bool TryModifyDescription(User user, string description)
+    {
+        if (user.Id != Author.Id || user.Name != Author.Name)
+        {
+            return false;
+        }
+
         Description = description;
         return true;
     }

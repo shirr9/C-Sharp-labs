@@ -36,7 +36,7 @@ public class LectureMaterials : ILectureMaterials
         Content = sourceLectureMaterials.Content;
     }
 
-    public bool TryModify(User user, string name, string description, string content)
+    public bool TryModifyName(User user, string name)
     {
         if (user.Id != Author.Id || user.Name != Author.Name)
         {
@@ -44,7 +44,27 @@ public class LectureMaterials : ILectureMaterials
         }
 
         Name = name;
+        return true;
+    }
+
+    public bool TryModifyDescription(User user, string description)
+    {
+        if (user.Id != Author.Id || user.Name != Author.Name)
+        {
+            return false;
+        }
+
         Description = description;
+        return true;
+    }
+
+    public bool TryModifyContent(User user, string content)
+    {
+        if (user.Id != Author.Id || user.Name != Author.Name)
+        {
+            return false;
+        }
+
         Content = content;
         return true;
     }
