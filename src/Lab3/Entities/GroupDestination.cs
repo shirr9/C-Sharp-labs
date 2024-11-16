@@ -1,5 +1,4 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab3.Exceptions;
-using Itmo.ObjectOrientedProgramming.Lab3.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab3.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Entities;
 
@@ -21,11 +20,6 @@ public class GroupDestination : IDestination
 
     public void ReceiveMessage(IMessage message)
     {
-        if (_destinations.Count <= 0)
-        {
-            throw new EmptyDestinationsException("Destinations cannot be empty");
-        }
-
         foreach (IDestination destination in _destinations)
         {
             destination.ReceiveMessage(message);
