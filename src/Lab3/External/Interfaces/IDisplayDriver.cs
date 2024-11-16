@@ -6,7 +6,7 @@ public interface IDisplayDriver
 {
     void Clear();
 
-    public Color Color { get; set; }
+    Color Color { get; set; }
 
     void Paint(string text);
 
