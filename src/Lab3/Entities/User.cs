@@ -9,7 +9,10 @@ public class User : IUser
 
     public void ReceiveMessage(IMessage message)
     {
-        if (!_userMessages.TryAdd(message, false)) throw new ReceivingMessageException($"Message has already been received.");
+        if (!_userMessages.TryAdd(message, false))
+        {
+            throw new ReceivingMessageException($"Message has already been received.");
+        }
     }
 
     public bool TryReadMessage(IMessage message)
