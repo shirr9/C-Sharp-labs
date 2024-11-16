@@ -102,7 +102,7 @@ public class MyTests
 
         messenger.AcceptMessage(mockMessage.Object);
 
-        string expectedOutput = "Messenger: Test Heading\r\n";
+        string expectedOutput = "Messenger: Test Heading" + Environment.NewLine;
         Assert.Equal(expectedOutput, consoleOutput.ToString());
     }
 
