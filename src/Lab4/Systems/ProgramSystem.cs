@@ -12,8 +12,6 @@ public class ProgramSystem : IProgramSystem
 
     public ProgramSystem(IEnumerable<IFileSystemFactory> fileSystemFactories, IEnumerable<IPrinterFactory> printerFactories)
     {
-        ConnectedFileSystem = null;
-
         _fileSystemFactories = new List<IFileSystemFactory>();
         _fileSystemFactories.AddRange(fileSystemFactories);
         _printerFactories = new List<IPrinterFactory>();
