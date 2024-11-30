@@ -6,6 +6,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Commands;
 
 public class TreeListCommand : ICommand
 {
+    private const int _defaultDepth = 1;
+
     private readonly int _depth;
 
     public TreeListCommand(int depth)
@@ -15,7 +17,7 @@ public class TreeListCommand : ICommand
 
     public TreeListCommand()
     {
-        _depth = 1;
+        _depth = _defaultDepth;
     }
 
     public void Execute(IProgramSystem programSystem)
