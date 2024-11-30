@@ -33,6 +33,8 @@ public class FileMoveCommand : ICommand
             _destinationPath = Path.Combine(current_path, _destinationPath);
         }
 
-        programSystem.ConnectedFileSystem.MoveFile(_sourcePath, _destinationPath);
+        programSystem
+            .ConnectedFileSystem
+            .MoveFile(_sourcePath, _destinationPath + Path.DirectorySeparatorChar + Path.GetFileName(_sourcePath));
     }
 }
