@@ -32,7 +32,6 @@ public class ProgramSystem : IProgramSystem
         }
 
         ConnectedFileSystem = factory.CreateFileSystem(address);
-        ConnectedFileSystem.ConnectFileSystem(address);
 
         if (!Path.IsPathRooted(address))
         {
