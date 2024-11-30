@@ -17,6 +17,4 @@ public interface IFileSystem
     void RenameFile(string path, string newName);
 
     void GotoDirectory(string path);
-
-    void ConnectFileSystem(string address);
 }

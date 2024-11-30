@@ -11,13 +11,6 @@ public class LocalFileSystem : IFileSystem
         Id = Guid.NewGuid();
     }
 
-    public LocalFileSystem()
-    {
-        Address = string.Empty;
-        Mode = "local";
-        Id = Guid.NewGuid();
-    }
-
     public Guid Id { get; }
 
     public string Mode { get; }
@@ -119,10 +112,5 @@ public class LocalFileSystem : IFileSystem
         path = Path.GetFullPath(path);
         Address = path;
         Console.WriteLine($"Goto from: {path}");
-    }
-
-    public void ConnectFileSystem(string address)
-    {
-        Address = address;
     }
 }
