@@ -5,9 +5,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Commands;
 
 public class FileCopyCommand : ICommand
 {
-    private readonly string _sourcePath;
+    private string _sourcePath;
 
-    private readonly string _destinationPath;
+    private string _destinationPath;
 
     public FileCopyCommand(string sourcePath, string destinationPath)
     {
@@ -21,6 +21,10 @@ public class FileCopyCommand : ICommand
         {
             throw new FileSystemNotConnectedException("System is not connected.");
         }
+
+        string current_path = programSystem.ConnectedFileSystem.Address;
+        _sourcePath = Path.Combine(current_path, _sourcePath);
+        _destinationPath = Path.Combine(current_path, _destinationPath);
 
         programSystem.ConnectedFileSystem.CopyFile(_sourcePath, _destinationPath);
     }

@@ -111,6 +111,6 @@ public class LocalFileSystem : IFileSystem
     {
         path = Path.GetFullPath(path);
         Address = path;
-        Console.WriteLine($"Goto from: {path}");
+        Console.WriteLine($"Goto: {path}");
     }
 }

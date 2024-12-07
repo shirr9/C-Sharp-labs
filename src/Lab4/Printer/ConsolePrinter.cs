@@ -43,11 +43,11 @@ public class ConsolePrinter : IPrinter
 
     public void PrintFolder(string path, int depth, int currentDepth, string prefix)
     {
-        if (currentDepth > depth) return;
-
         var dirInfo = new DirectoryInfo(path);
 
         Console.WriteLine($"{prefix}{FolderSymbol} {dirInfo.Name}");
+
+        if (currentDepth > depth) return;
 
         DirectoryInfo[] directories = dirInfo.GetDirectories();
         FileInfo[] files = dirInfo.GetFiles();

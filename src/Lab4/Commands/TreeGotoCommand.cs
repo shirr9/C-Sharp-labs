@@ -19,6 +19,8 @@ public class TreeGotoCommand : ICommand
             throw new FileSystemNotConnectedException("System is not connected.");
         }
 
-        programSystem.ConnectedFileSystem.GotoDirectory(_path);
+        string current_path = programSystem.ConnectedFileSystem.Address;
+
+        programSystem.ConnectedFileSystem.GotoDirectory(Path.Combine(current_path, _path));
     }
 }

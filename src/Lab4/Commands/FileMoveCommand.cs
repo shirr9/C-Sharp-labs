@@ -23,15 +23,9 @@ public class FileMoveCommand : ICommand
         }
 
         string current_path = programSystem.ConnectedFileSystem.Address;
-        if (!Path.IsPathRooted(_sourcePath))
-        {
-            _sourcePath = Path.Combine(current_path, _sourcePath);
-        }
 
-        if (!Path.IsPathRooted(_destinationPath))
-        {
-            _destinationPath = Path.Combine(current_path, _destinationPath);
-        }
+        _sourcePath = Path.Combine(current_path, _sourcePath);
+        _destinationPath = Path.Combine(current_path, _destinationPath);
 
         programSystem
             .ConnectedFileSystem

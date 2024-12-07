@@ -7,7 +7,7 @@ public class FileRenameCommand : ICommand
 {
     private readonly string _newName;
 
-    private string _path;
+    private readonly string _path;
 
     public FileRenameCommand(string path, string newName)
     {
@@ -23,11 +23,7 @@ public class FileRenameCommand : ICommand
         }
 
         string current_path = programSystem.ConnectedFileSystem.Address;
-        if (!Path.IsPathRooted(_path))
-        {
-            _path = Path.Combine(current_path, _path);
-        }
 
-        programSystem.ConnectedFileSystem.RenameFile(_path, _newName);
+        programSystem.ConnectedFileSystem.RenameFile(Path.Combine(current_path, _path), _newName);
     }
 }

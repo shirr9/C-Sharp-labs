@@ -34,6 +34,6 @@ public class TreeListCommand : ICommand
         }
 
         string path = programSystem.ConnectedFileSystem.Address;
-        printer.PrintFolder(path, _depth, _depth, string.Empty);
+        printer.PrintFolder(path, _depth, 1, string.Empty);
     }
 }

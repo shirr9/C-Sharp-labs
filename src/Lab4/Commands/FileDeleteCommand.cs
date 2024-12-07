@@ -25,6 +25,12 @@ public class FileDeleteCommand : ICommand
             _path = Path.Combine(current_path, _path);
         }
 
-        programSystem.ConnectedFileSystem.DeleteFile(_path);
+        if (File.Exists(_path))
+        {
+            programSystem.ConnectedFileSystem.DeleteFile(_path);
+            return;
+        }
+
+        Console.WriteLine($"File {_path} does not exist.");
     }
 }
